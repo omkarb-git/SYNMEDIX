@@ -46,17 +46,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Switch to Sign Up form
-  showSignUp.onclick = function(e) {
-    e.preventDefault();
-    signInForm.style.display = "none";
-    signUpForm.style.display = "block";
-  }
-
-  // Switch to Sign In form
-  showSignIn.onclick = function(e) {
-    e.preventDefault();
-    signUpForm.style.display = "none";
-    signInForm.style.display = "block";
-  }
 });
