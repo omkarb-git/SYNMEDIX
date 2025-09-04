@@ -26,9 +26,13 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    
     <div class="auth-buttons">
+      <!-- <button id="signInBtn">Sign In</button> -->
+      <!-- <button onclick="location.href='{{ url_for('signup') }}'">Sign Up</button> -->
       <button id="signInBtn">Sign In</button>
-      <button id="signUpBtn">Sign Up</button>
+    </div>
+
     </div>
   </header>
 
@@ -83,4 +87,9 @@
   </div>
 
 </body>
+<script>
+  document.getElementById("signInBtn").addEventListener("click", function () {
+    window.location.href = "{{ url_for('signup') }}";// Change to your actual sign-in page
+  });
+</script>
 </html>
