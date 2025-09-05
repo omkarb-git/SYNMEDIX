@@ -12,17 +12,30 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        body {
+       
+        /* body {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+        }  */
+
+
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #6a11cb, #2575fc, #43cea2, #185a9d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 20px;
         }
         
-        .container {
+        /* .container {
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
@@ -31,6 +44,24 @@
             min-height: 750px;
             overflow: hidden;
             position: relative;
+        } */
+
+
+
+            .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 1100px;
+            min-height: 750px;
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+            color: white;
         }
         
         .form-container {
