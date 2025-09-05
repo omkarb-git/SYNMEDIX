@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthcare Services</title>
+    <title>Featured Brands</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,141 +14,138 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: #2c3e50;
-            line-height: 1.6;
-            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
         
         header {
+            background: linear-gradient(to right, #4a6fa5, #2a4d80);
+            color: white;
+            padding: 25px 30px;
             text-align: center;
-            padding: 30px 0;
         }
         
         header h1 {
-            font-size: 2.8rem;
-            color: #2a7cc7;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
         }
         
         header p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
+            opacity: 0.9;
         }
         
-        .services-grid {
+        .brands-container {
+            padding: 30px;
+        }
+        
+        .brands-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 25px;
-            margin-top: 40px;
+            margin-bottom: 30px;
         }
         
-        .service-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        .brand-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 140px;
         }
         
-        .service-card:hover {
+        .brand-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .card-header {
-            padding: 25px 20px;
-            text-align: center;
-            background: linear-gradient(to right, #3498db, #2c3e50);
-            color: white;
-        }
-        
-        .card-header i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .card-header h2 {
-            font-size: 1.8rem;
+        .brand-name {
             font-weight: 600;
+            font-size: 1.2rem;
+            color: #2a4d80;
+            margin-top: 10px;
         }
         
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
+        .see-more {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .see-more-btn {
+            background: transparent;
+            border: none;
+            color: #4a6fa5;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .see-more-btn:hover {
+            background: #f0f5ff;
+        }
+        
+        .see-more-btn i {
+            transition: transform 0.5s ease;
+        }
+        
+        .expanded .see-more-btn i {
+            transform: rotate(180deg);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .expanded .hidden {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            animation: fadeIn 0.5s ease;
         }
         
-        .card-content p {
-            margin-bottom: 20px;
-            color: #555;
-            line-height: 1.5;
-        }
-        
-        .card-content ul {
-            list-style-type: none;
-            margin-bottom: 25px;
-            padding-left: 5px;
-        }
-        
-        .card-content li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .card-content li:before {
-            content: "•";
-            color: #3498db;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        .btn {
-            display: block;
-            text-align: center;
-            background: #3498db;
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        
-        .btn:hover {
-            background: #2980b9;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         footer {
             text-align: center;
-            margin-top: 50px;
             padding: 20px;
-            color: #7f8c8d;
-            border-top: 1px solid #ddd;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
         }
         
         @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
+            .brands-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
             }
             
             header h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -156,155 +153,98 @@
 <body>
     <div class="container">
         <header>
-            <h1>Specialized Healthcare Services</h1>
-            <p>Comprehensive medical care for your specific health needs. Our expert team provides personalized treatment plans for optimal wellness.</p>
+            <h1>Featured Brands</h1>
+            <p>Discover our trusted healthcare partners</p>
         </header>
         
-        <div class="services-grid">
-            <!-- Diabetes Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-tint"></i>
-                    <h2>Diabetes Care</h2>
+        <div class="brands-container">
+            <div class="brands-grid">
+                <!-- Initial visible brands -->
+                <div class="brand-card">
+                    <div class="brand-icon">
+                        <i class="fas fa-capsules" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">Protinex</div>
                 </div>
-                <div class="card-content">
-                    <p>Comprehensive diabetes management and education to help you maintain healthy blood sugar levels and prevent complications.</p>
-                    <ul>
-                        <li>Blood sugar monitoring</li>
-                        <li>Nutrition planning</li>
-                        <li>Medication management</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
+                
+                <div class="brand-card">
+                    <div class="brand-icon">
+                        <i class="fas fa-pills" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">Perfectif</div>
                 </div>
-            </div>
-            
-            <!-- Heart Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-heart"></i>
-                    <h2>Heart Care</h2>
+                
+                <div class="brand-card">
+                    <div class="brand-icon">
+                        <i class="fas fa-prescription-bottle" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">Cetaphi</div>
                 </div>
-                <div class="card-content">
-                    <p>Advanced cardiac care for maintaining heart health, preventing disease, and managing existing heart conditions.</p>
-                    <ul>
-                        <li>Cardiac screenings</li>
-                        <li>Cholesterol management</li>
-                        <li>Hypertension treatment</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
+                
+                <div class="brand-card">
+                    <div class="brand-icon">
+                        <i class="fas fa-syringe" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">Pantaburo</div>
                 </div>
-            </div>
-            
-            <!-- Stomach Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-stomach"></i>
-                    <h2>Stomach Care</h2>
+                
+                <!-- Hidden brands that will be shown when expanded -->
+                <div class="brand-card hidden">
+                    <div class="brand-icon">
+                        <i class="fas fa-tablets" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">Epilgrim</div>
                 </div>
-                <div class="card-content">
-                    <p>Specialized care for digestive health, including diagnosis and treatment of gastrointestinal disorders and conditions.</p>
-                    <ul>
-                        <li>Digestive disorder treatment</li>
-                        <li>Nutrition counseling</li>
-                        <li>Endoscopic procedures</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
+                
+                <div class="brand-card hidden">
+                    <div class="brand-icon">
+                        <i class="fas fa-heartbeat" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">W</div>
                 </div>
-            </div>
-            
-            <!-- Liver Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-liver"></i>
-                    <h2>Liver Care</h2>
+                
+                <div class="brand-card hidden">
+                    <div class="brand-icon">
+                        <i class="fas fa-stethoscope" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">GHS</div>
                 </div>
-                <div class="card-content">
-                    <p>Comprehensive hepatology services for prevention, diagnosis, and treatment of liver and biliary tract diseases.</p>
-                    <ul>
-                        <li>Liver function tests</li>
-                        <li>Hepatitis management</li>
-                        <li>Fatty liver treatment</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
+                
+                <div class="brand-card hidden">
+                    <div class="brand-icon">
+                        <i class="fas fa-female" style="font-size: 2rem; color: #4a6fa5;"></i>
+                    </div>
+                    <div class="brand-name">SHE ALL</div>
                 </div>
             </div>
             
-            <!-- Bone, Joint & Muscle -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-bone"></i>
-                    <h2>Bone, Joint & Muscle</h2>
-                </div>
-                <div class="card-content">
-                    <p>Specialized orthopedic care for bones, joints, and muscles to keep you moving and living without pain.</p>
-                    <ul>
-                        <li>Arthritis treatment</li>
-                        <li>Sports injury care</li>
-                        <li>Physical therapy</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            
-            <!-- Kidney Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-kidneys"></i>
-                    <h2>Kidney Care</h2>
-                </div>
-                <div class="card-content">
-                    <p>Nephrology services focused on kidney health, from prevention to treatment of kidney diseases and disorders.</p>
-                    <ul>
-                        <li>Kidney function tests</li>
-                        <li>Dialysis services</li>
-                        <li>Hypertension management</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            
-            <!-- Derma Care -->
-            <div class="service-card">
-                <div class="card-header">
-                    <i class="fas fa-spa"></i>
-                    <h2>Derma Care</h2>
-                </div>
-                <div class="card-content">
-                    <p>Comprehensive dermatological care for all skin conditions, from acne to skin cancer detection and treatment.</p>
-                    <ul>
-                        <li>Skin cancer screening</li>
-                        <li>Acne treatment</li>
-                        <li>Cosmetic dermatology</li>
-                    </ul>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <div class="see-more">
+                <button class="see-more-btn" id="seeMoreBtn">
+                    See more brands <i class="fas fa-chevron-down"></i>
+                </button>
             </div>
         </div>
         
         <footer>
-            <p>© 2025 Healthcare Services. All rights reserved.</p>
+            <p>© 2025 Healthcare Brands. All rights reserved.</p>
         </footer>
     </div>
-    
+
     <script>
-        // Simple animation for cards when they come into view
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.service-card');
+            const seeMoreBtn = document.getElementById('seeMoreBtn');
+            const brandsContainer = document.querySelector('.brands-container');
+            const hiddenBrands = document.querySelectorAll('.hidden');
             
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            seeMoreBtn.addEventListener('click', function() {
+                brandsContainer.classList.toggle('expanded');
+                
+                if (brandsContainer.classList.contains('expanded')) {
+                    seeMoreBtn.innerHTML = 'See less brands <i class="fas fa-chevron-up"></i>';
+                } else {
+                    seeMoreBtn.innerHTML = 'See more brands <i class="fas fa-chevron-down"></i>';
+                }
             });
-            
-            setTimeout(() => {
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100 * index);
-                });
-            }, 200);
         });
     </script>
 </body>
