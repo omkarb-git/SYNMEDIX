@@ -24,15 +24,33 @@
         <li><a href="#patients">Patients</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+
       </ul>
     </nav>
     
-    <div class="auth-buttons">
-      <!-- <button id="signInBtn">Sign In</button> -->
+    <!-- <div class="auth-buttons">
+      <!-<button id="signInBtn">Sign In</button> -->
       <!-- <button onclick="location.href='{{ url_for('signup') }}'">Sign Up</button> -->
-      <button id="signInBtn">Sign In</button>
-    </div>
+     <!-- <button id="signInBtn">Sign In</button>
+    </div> -->
+    
 
+
+    <div class="auth-buttons">
+      {% if logged_in %}
+      <div class="profile-section">
+        <span class="user-name">Hi, {{ user_name }}</span>
+        <!-- <div class="profile-icon" onclick="location.href='{{ url_for('dashboard') }}'"> -->
+        <div class="profile-icon" data-url="{{ url_for('dashboard') }}">
+        <i class="fas fa-user"></i>
+        </div>
+      </div>
+      {% else %}
+      <button id="signInBtn">Sign In</button>
+      {% endif %}
+    </div>
+    
     </div>
   </header>
 
@@ -153,7 +171,7 @@
                         <li>Nutrition planning</li>
                         <li>Medication management</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -172,7 +190,7 @@
                         <li>Cholesterol management</li>
                         <li>Hypertension treatment</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -191,7 +209,7 @@
                         <li>Nutrition counseling</li>
                         <li>Endoscopic procedures</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -210,7 +228,7 @@
                         <li>Hepatitis management</li>
                         <li>Fatty liver treatment</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -229,7 +247,7 @@
                         <li>Sports injury care</li>
                         <li>Physical therapy</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -248,7 +266,7 @@
                         <li>Dialysis services</li>
                         <li>Hypertension management</li>
                     </ul>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Medicine</a>
                 </div>
             </div>
             
@@ -328,5 +346,9 @@ setInterval(showNextSlide, 3000); // change every 3 sec
                 });
             }, 200);
         });
+
+    document.querySelector('.profile-icon').addEventListener('click', function () {
+    window.location.href = "{{ url_for('dashboard') }}";
+    });
 </script>
 </html>
