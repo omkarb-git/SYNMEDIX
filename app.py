@@ -17,7 +17,7 @@
 # if __name__ == '__main__':
 #     app.run(debug=True)
 
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, SubmitField 
 from wtforms.validators import DataRequired, Email, ValidationError 
