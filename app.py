@@ -22,7 +22,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField 
 from wtforms.validators import DataRequired, Email, ValidationError 
 import bcrypt   
-from flask_sqlalchemy import MySQL
+# from flask_sqlalchemy import MySQL
+from flask_mysqldb import MySQL 
+
 
 app = Flask(__name__) 
 
