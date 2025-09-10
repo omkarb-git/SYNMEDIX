@@ -29,19 +29,21 @@
       </ul>
     </nav>
     
-    <!-- <div class="auth-buttons">
-      <!-<button id="signInBtn">Sign In</button> -->
-      <!-- <button onclick="location.href='{{ url_for('signup') }}'">Sign Up</button> -->
-     <!-- <button id="signInBtn">Sign In</button>
-    </div> -->
+    <div class="auth-buttons">
+      <!-- <button id="signInBtn">Sign In</button> 
+      <button onclick="location.href="">Sign Up</button> -->
+      <button type="button" id="signInBtn">Sign In</button>
+        <!-- <a href="{{ url_for('signin') }}" class="signup-btn">Sign Up</a> -->
+    <!-- <button type="button" id="signInBtn">Sign Up</button> -->
+    </div> 
     
 
 
-    <div class="auth-buttons">
+    <!-- <div class="auth-buttons">
       {% if logged_in %}
       <div class="profile-section">
-        <span class="user-name">Hi, {{ user_name }}</span>
-        <!-- <div class="profile-icon" onclick="location.href='{{ url_for('dashboard') }}'"> -->
+        <span class="user-name">Hi, {{ user_name }}</span> 
+        <div class="profile-icon" onclick="location.href='{{ url_for('dashboard') }}'"> 
         <div class="profile-icon" data-url="{{ url_for('dashboard') }}">
         <i class="fas fa-user"></i>
         </div>
@@ -49,7 +51,7 @@
       {% else %}
       <button id="signInBtn">Sign In</button>
       {% endif %}
-    </div>
+    </div> -->
     
     </div>
   </header>
@@ -324,7 +326,7 @@ function showNextSlide() {
 setInterval(showNextSlide, 3000); // change every 3 sec
 
   document.getElementById("signInBtn").addEventListener("click", function () {
-    window.location.href = "{{ url_for('signup') }}";// Change to your actual sign-in page
+    window.location.href = "{{ url_for('signin') }}";// Change to your actual sign-in page
   });
 
 
