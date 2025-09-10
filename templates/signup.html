@@ -38,13 +38,13 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             width: 100%;
-            max-width: 900px; /* Increased width for web */
+            max-width: 900px;
             overflow: hidden;
             position: relative;
-            padding: 50px; /* Increased padding */
+            padding: 50px;
             color: white;
-            display: flex; /* Added flex for two-column layout */
-            gap: 40px; /* Space between columns */
+            display: flex;
+            gap: 40px;
         }
         
         .welcome-section {
@@ -281,6 +281,33 @@
             flex: 1;
         }
         
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .flask-message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            text-align: center;
+            display: none;
+        }
+        
+        .flask-error {
+            background-color: rgba(255, 235, 238, 0.2);
+            color: #ff6b6b;
+            display: block;
+        }
+        
+        .flask-success {
+            background-color: rgba(232, 245, 233, 0.2);
+            color: #69db7c;
+            display: block;
+        }
+        
         @media (max-width: 900px) {
             .container {
                 flex-direction: column;
@@ -367,8 +394,10 @@
         </div>
         
         <div class="form-section">
-            <!-- {{ form.hidden_tag() }} -->
-            <form action="/register" id="signUpForm" method="POST">
+            <!-- Flask message area -->
+            <div id="flaskMessage" class="flask-message"></div>
+            
+            <form id="signUpForm">
                 <h2>Create Account</h2>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-google"></i></a>
@@ -379,45 +408,52 @@
                 
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Full Name" required />
+                    <input type="text" id="fullName" placeholder="Full Name" required />
+                    <div class="error-message" id="nameError">Please enter your full name</div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group">
                         <i class="fas fa-phone"></i>
-                        <input type="tel" placeholder="Phone Number" required />
+                        <input type="tel" id="phoneNumber" placeholder="Phone Number" required />
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
                     </div>
                     <div class="form-group">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" required />
+                        <input type="email" id="email" placeholder="Email" required />
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group">
                         <i class="fas fa-road"></i>
-                        <input type="text" placeholder="Street/Lane" required />
+                        <input type="text" id="street" placeholder="Street/Lane" required />
+                        <div class="error-message" id="streetError">Please enter your street address</div>
                     </div>
                     <div class="form-group">
                         <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" placeholder="Locality" required />
+                        <input type="text" id="locality" placeholder="Locality" required />
+                        <div class="error-message" id="localityError">Please enter your locality</div>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group">
                         <i class="fas fa-city"></i>
-                        <input type="text" placeholder="City" required />
+                        <input type="text" id="city" placeholder="City" required />
+                        <div class="error-message" id="cityError">Please enter your city</div>
                     </div>
                     <div class="form-group">
                         <i class="fas fa-map-pin"></i>
-                        <input type="text" placeholder="Pincode" required />
+                        <input type="text" id="pincode" placeholder="Pincode" required />
+                        <div class="error-message" id="pincodeError">Please enter a valid pincode</div>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <i class="fas fa-globe"></i>
-                    <select required>
+                    <select id="state" required>
                         <option value="" disabled selected>Select State</option>
                         <option value="AL">Alabama</option>
                         <option value="CA">California</option>
@@ -425,16 +461,19 @@
                         <option value="NY">New York</option>
                         <option value="TX">Texas</option>
                     </select>
+                    <div class="error-message" id="stateError">Please select your state</div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" required />
+                        <input type="password" id="password" placeholder="Password" required />
+                        <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
                     </div>
                     <div class="form-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Confirm Password" required />
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+                        <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
                     </div>
                 </div>
                 
@@ -447,15 +486,16 @@
                 
                 <div class="form-group">
                     <i class="fas fa-shield-alt"></i>
-                    <input type="text" class="captcha-input" placeholder="Enter CAPTCHA" required />
+                    <input type="text" id="captchaInput" class="captcha-input" placeholder="Enter CAPTCHA" required />
+                    <div class="error-message" id="captchaError">CAPTCHA verification failed</div>
                 </div>
                 
-                <button type="submit">Sign Up</button>
+                <button type="submit" id="submitBtn">Sign Up</button>
                 
                 <p class="terms">By signing up, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></p>
                 
                 <div class="signin-link">
-                    Already have an account? <a href="signin.html">Sign In</a>
+                    Already have an account? <a href="{{ url_for('signin') }}">Sign In</a>
                 </div>
             </form>
         </div>
@@ -472,28 +512,123 @@
             document.getElementById('captchaText').textContent = result;
         }
         
+        // Form validation functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+        
+        function validatePhone(phone) {
+            const re = /^[\+]?[1-9][\d]{0,15}$/;
+            return re.test(phone.replace(/\D/g, ''));
+        }
+        
+        // Get URL parameters for messages
+        function getUrlParameter(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        
         // Event Listeners
         document.getElementById('refreshCaptcha').addEventListener('click', generateCaptcha);
         
+        // Initialize CAPTCHA on page load
+        generateCaptcha();
+        
+        // Check for messages from Flask
+        const message = getUrlParameter('message');
+        const error = getUrlParameter('error');
+        const flaskMessage = document.getElementById('flaskMessage');
+        
+        if (message) {
+            flaskMessage.textContent = message;
+            flaskMessage.classList.add('flask-success');
+            flaskMessage.style.display = 'block';
+        }
+        
+        if (error) {
+            flaskMessage.textContent = error;
+            flaskMessage.classList.add('flask-error');
+            flaskMessage.style.display = 'block';
+        }
+        
+        // Form submission handler
         document.getElementById('signUpForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Validate CAPTCHA
-            const captchaInput = document.querySelector('.captcha-input');
-            if (captchaInput.value !== document.getElementById('captchaText').textContent) {
-                alert('CAPTCHA verification failed. Please try again.');
-                generateCaptcha();
-                captchaInput.value = '';
-                return;
+            let isValid = true;
+            
+            // Validate all fields
+            const fullName = document.getElementById('fullName');
+            if (!fullName.value.trim()) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
             }
             
-            alert('Account created successfully! You can now sign in.');
-            // In a real application, you would redirect to sign in page
-            // window.location.href = 'signin.html';
+            const email = document.getElementById('email');
+            if (!validateEmail(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            const phone = document.getElementById('phoneNumber');
+            if (!validatePhone(phone.value)) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+            
+            const password = document.getElementById('password');
+            if (!validatePassword(password.value)) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (password.value !== confirmPassword.value) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate CAPTCHA
+            const captchaInput = document.getElementById('captchaInput');
+            if (captchaInput.value !== document.getElementById('captchaText').textContent) {
+                document.getElementById('captchaError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // In a real application, you would send the data to your Flask backend
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.textContent = 'Creating Account...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call to Flask
+                setTimeout(() => {
+                    alert('Account created successfully! You can now sign in.');
+                    window.location.href = "{{ url_for('signin') }}";
+                }, 1500);
+            }
         });
         
-        // Initialize CAPTCHA on page load
-        generateCaptcha();
+        // Clear error messages when user starts typing
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const errorId = input.id + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
